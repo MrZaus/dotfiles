@@ -108,24 +108,14 @@ if ! shopt -oq posix; then
 fi
 
 
-PATH=$HOME/bin:$PATH
-OWKS=$HOME/opera/work
-
-alias lint="git status -uno --porcelain | cut -f3 -d' ' | xargs cpplint.py "
 alias ls=exa
 alias l='ls -GF'
 alias v=vim
 alias agc='ag --cpp'
 alias agn='ag -G "BUILD.gn"'
 alias cat=bat
-alias cdo='cd '$OWKS
-alias cdout='cd '$OWKS'/chromium/src/out/Debug/'
-alias cdchr='cd '$OWKS'/chromium/src'
-alias upall='cdo && git pull --rebase && git submodule update --recursive'
+
 alias toast='powershell.exe -command New-BurntToastNotification'
-alias bo="cdo &&powershell.exe -command 'python3.exe ./chromium/src/tools/clang/scripts/generate_compdb.py -p ./chromium/src/out/Debug  > compile_commands.json' && cdout &&powershell.exe -command  autoninja opera && toast -Text \"'Building finished'\"" 
-alias gnbo="cdo &&powershell.exe -command gno && bo"
-alias ub='upall && gnbo'
 alias fd='fd -Iip'
 alias f='fg `jobs | fzf | cut -c 2`'
 alias b='bat'
@@ -133,14 +123,7 @@ alias c='cat'
 alias preview='fzf --preview="bat {} --color=always"'
 alias sd='git diff --staged'
 alias gd='git  diff'
-alias srv="powershell.exe -command 'Start-Service ssh-agent; desktop\build\speedy\speedy.exe -C chromium\src\out\Debug run_sync_testserver' && chromium/src/out/Debug/run_sync_testserver.exe --bind-all --port=999 --xmpp-port=998 "
-alias srv="powershell.exe -command 'Start-Service ssh-agent; desktop\build\speedy\speedy.exe -C chromium\src\out\Debug run_sync_testserver' && powershell.exe -command '$env:SYNC_FCM_KEY=\"AAAAAUp7aKk:APA91bGPknEcGrgArLCW3kUnaUW7Pb1FEJLO_WkuLe4vlBg6ObmOhekEuBl-gxBvqLGmfUJwYCJHlSOhq43g0cOvd2SNZkioEWJ2TFuyRDUuzUkUjzjOFa-H7tMAF5KGNFfv88a37naI\"; chromium/src/out/Debug/run_sync_testserver.exe --bind-all --port=999 --xmpp-port=998 '"
 
-opc(){
-  echo $1
-  cdo
-  powershell.exe -command 'Start-Service ssh-agent; desktop\build\speedy\speedy.exe -C chromium\src\out\Debug opera_components_unittests' && chromium/src/out/Debug/opera_components_unittests.exe --gtest_filter=*$1*
-}
 
 bag(){
   CONTEXT=5
@@ -214,7 +197,4 @@ TRUELINE_GIT_SHOW_STATUS_NUMBERS=true
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export PATH=/home/marshall/code/depot_tools:$PATH
 
-
-cdo
