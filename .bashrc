@@ -78,7 +78,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # some more ls aliases
 alias ll='ls -alF'
-alias la='ls -A'
+#alias la='ls -A'
 alias l='ls -CF'
 alias st='git status -uno'
 
@@ -109,11 +109,11 @@ fi
 
 
 alias ls=exa
-alias l='ls -GF'
 alias v=vim
 alias agc='ag --cpp'
 alias agn='ag -G "BUILD.gn"'
 alias cat=bat
+alias l='exa --icons -alh  --group-directories-first -@'
 
 alias toast='powershell.exe -command New-BurntToastNotification'
 alias fd='fd -Iip'
@@ -159,15 +159,15 @@ shopt -s histappend
 if [ -f ~/.dir_colors ]; then
   eval `dircolors ~/.dir_colors`
 fi
-export EXA_COLORS="uu=38;5;121"
+export EXA_COLORS="uu=38;5;161:sn=31"
 if [ -t 1 ]; then
   cd ~
 fi
 
 export EDITOR='vim'
 
-eval `ssh-agent` 
-ssh-add ~/.ssh/id_rsa
+#eval `ssh-agent` 
+#ssh-add ~/.ssh/id_rsa
 
 
 #_trueline_time_segment() {
@@ -196,5 +196,6 @@ TRUELINE_GIT_SHOW_STATUS_NUMBERS=true
 #source ~/trueline/trueline.sh
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+export BAT_THEME=GitHub

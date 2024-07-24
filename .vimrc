@@ -19,26 +19,16 @@ Plugin 'SyntaxAttr.vim'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'bogado/file-line'
-Plugin 'chromium/vim-codesearch'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-fugitive.git'
 Plugin 'inkarkat/vim-mark'
-Plugin 'vim-colors-pencil'
+Plugin 'preservim/vim-colors-pencil'
 
 
 call vundle#end()
+
 filetype plugin indent on
-
-set hidden " for chromium/vim-codesearch
-let g:codesearch_source_root = '~/opera/work/chromim/src'
-so ~/opera/work/chromium/src/tools/vim/filetypes.vim
-so ~/opera/work/chromium/src/tools/vim/clang-format.vim
-"so ~/opera/work/chromium/src/tools/vim/ninja-build.vim
-
-g:ycm_confirm_extra_conf
-
-
 
 "colorscheme zenburn_modified
 "colorscheme pacific
@@ -72,7 +62,7 @@ set so=5                        " przewijaj juz na 5 linii przed ko.cem
 "set statusline=%y[%{&ff}]\ \ ASCII=\%03.3b,HEX=\%02.2B\ %=%m%r%h%w\ %t%*\ %l:%v\ (%p%%)
 set laststatus=2                " zawsze pokazuj lini. statusu
 let g:airline_powerline_fonts = 1
-let g:airline_theme='bubblegum'
+let g:airline_theme='pencil'
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 set mouse=a
