@@ -1,0 +1,76 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  - name: install packages
+    become: true
+    tags: packages
+    block:
+    - name: install vim
+      package:
+        name: vim
+    - name: install powerline
+      package:
+        name: powerline
+    - name: install tldr
+      package:
+        name: tldr
+    - name: install ag
+      package:
+        name: silversearcher-ag
+    - name: install exa
+      package:
+        name: exa
+    - name: install htop
+      package:
+        name: htop
+    - name: install fzf
+      package:
+        name: fzf
+    - name: install fd
+      package:
+        name: fd-find
+    - name: install bat
+      package:
+        name: bat
+    - name: install neofetch
+      package:
+        name: neofetch
+    - name: install git
+      package:
+        name: git
+
+  #config
+  - name: bash aliases 
+    become: true
+    lineinfile:
+      path: /etc/bash.bashrc
+      line: '{{ item }}'
+    with_items: 
+      - "alias l='exa --icons -alh --color-scale --group-directories-first -@'"
+      - "alias v='vim'"
+      - "alias cat='batcat'"
+      - "alias fd='fdfind'"
+  - name: unzip dotfiles
+    tags: dotfiles
+    unarchive:
+      src: https://github.com/MrZaus/dotfiles/archive/refs/heads/main.zip
+      dest: "{{ ansible_env.HOME }}/"
+      remote_src: yes
+  - name: copy dotfiles to home dir
+    tags: dotfiles
+    copy:
+      src: "{{ item }}"
+      dest: ~/
+      backup: true
+      remote_src: yes
+    with_fileglob:
+      - "{{ ansible_env.HOME }}/dotfiles-main/.*"
+  - name: list
+    tags: dotfiles
+    raw: ls -asl ~
+  - name: install vim vundle plugin
+    tags: dotfiles
+    git:
+      repo: https://github.com/VundleVim/Vundle.vim.git
+      dest: ~/.vim/bundle/Vundle.vim
