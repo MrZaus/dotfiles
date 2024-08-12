@@ -5,6 +5,7 @@
   - name: install packages
     become: true
     tags: packages
+    ignore_errors: true
     block:
     - name: install vim
       package:
@@ -18,9 +19,9 @@
     - name: install ag
       package:
         name: silversearcher-ag
-    - name: install exa
-      package:
-        name: exa
+    - name: install lsd
+      apt:
+        deb: https://github.com/lsd-rs/lsd/releases/download/v1.1.2/lsd-musl_1.1.2_amd64.deb
     - name: install htop
       package:
         name: htop
@@ -43,14 +44,16 @@
   #config
   - name: bash aliases 
     become: true
+    tags: aliases
     lineinfile:
       path: /etc/bash.bashrc
       line: '{{ item }}'
     with_items: 
-      - "alias l='exa --icons -alh --color-scale --group-directories-first -@'"
+      - "alias l='lsd -al --group-directories-first '"
       - "alias v='vim'"
       - "alias cat='batcat'"
       - "alias fd='fdfind'"
+      - "alias ag='ag --color-path  35 --color-line-number 34'"
   - name: unzip dotfiles
     tags: dotfiles
     unarchive:
