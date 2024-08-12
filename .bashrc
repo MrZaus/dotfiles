@@ -108,15 +108,14 @@ if ! shopt -oq posix; then
 fi
 
 
-alias ls=exa
 alias v=vim
 alias agc='ag --cpp'
 alias agn='ag -G "BUILD.gn"'
 alias cat=bat
-alias l='exa --icons -alh  --group-directories-first -@'
+alias l='lsd -al --group-directories-first '
 
 alias toast='powershell.exe -command New-BurntToastNotification'
-alias fd='fd -Iip'
+alias fd='fdfind -Iip'
 alias f='fg `jobs | fzf | cut -c 2`'
 alias b='bat'
 alias c='cat'

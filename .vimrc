@@ -1,4 +1,5 @@
 filetype off
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -7,7 +8,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'juneedahamed/vc.vim'
 Plugin 'highlight.vim'
 Plugin 'mileszs/ack.vim'
@@ -256,3 +257,4 @@ autocmd VimEnter,ColorScheme * :hi Todo             ctermfg=10  cterm=underline
 set fillchars=vert:\│
 
 set colorcolumn=81
+set encoding=utf-8
