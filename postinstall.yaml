@@ -49,6 +49,7 @@
       path: /etc/bash.bashrc
       line: '{{ item }}'
     with_items: 
+      - "source /usr/share/doc/fzf/examples/key-bindings.bash"
       - "alias l='lsd -al --group-directories-first '"
       - "alias v='vim'"
       - "alias cat='batcat'"
